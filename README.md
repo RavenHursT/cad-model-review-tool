@@ -7,7 +7,7 @@ Monorepo for the CAD model review interview exercise — a 3D cube viewer with p
 ```
 apps/web          Next.js 16 + React Three Fiber (frontend)
 apps/api          NestJS 11 + tRPC (backend API)
-packages/database Prisma ORM → Supabase Postgres (Phase 3+)
+packages/database Prisma ORM → Supabase Postgres
 packages/trpc     Shared Zod schemas + tRPC router (Phase 4+)
 packages/ui       ShadCN components (Phase 6+)
 ```
@@ -50,7 +50,39 @@ pnpm dev
 | `pnpm build` | Build all apps |
 | `pnpm lint` | Lint all packages |
 | `pnpm typecheck` | Type-check all packages |
-| `pnpm db:migrate` | Run Prisma migrations (Phase 3+) |
+| `pnpm db:generate` | Generate Prisma client |
+| `pnpm db:migrate` | Create/apply Prisma migrations locally |
+
+## Database (Supabase + Prisma)
+
+**Supabase project:** `cmrt` — ref `zyhntpqedmairqkpummv` (us-east-1)
+
+Dashboard: https://supabase.com/dashboard/project/zyhntpqedmairqkpummv/settings/database
+
+Copy the database password from Project Settings → Database, then set in `.env` (or `.env.local`):
+
+```
+DATABASE_URL=postgresql://postgres.zyhntpqedmairqkpummv:[PASSWORD]@aws-1-us-east-1.pooler.supabase.com:6543/postgres?pgbouncer=true
+DIRECT_URL=postgresql://postgres.zyhntpqedmairqkpummv:[PASSWORD]@aws-1-us-east-1.pooler.supabase.com:5432/postgres
+```
+
+URL-encode special characters in the password (e.g. `$` → `%24`, `&` → `%26`). Use the exact pooler host from your project's **Connect** dialog — this project uses `aws-1-us-east-1`, not `aws-0`.
+
+| Variable | Use |
+|----------|-----|
+| `DATABASE_URL` | Runtime queries via PgBouncer (port 6543) |
+| `DIRECT_URL` | Migrations and Prisma CLI (port 5432) |
+
+**Schema:** `packages/database/prisma/schema.prisma` — single `reviews` table with `ReviewStatus` enum (`pending`, `approved`, `rejected`). RLS is enabled with no public policies (API-only access via service role connection).
+
+**Local migration workflow:**
+
+```bash
+pnpm db:generate
+pnpm db:migrate
+```
+
+The initial migration (`20260612170000_init_reviews`) is already applied on the remote database. CI runs `prisma migrate deploy` via [`.github/workflows/migrate.yml`](.github/workflows/migrate.yml) when migration files change on `main`.
 
 ## Deployment
 
@@ -73,6 +105,7 @@ Both projects auto-deploy on push to `origin/main`. Repository: https://github.c
 | Variable | Description |
 |----------|-------------|
 | `API_URL` | URL of the `cmrt-api` deployment |
+| `API_PROTECTION_BYPASS` | `cmrt-api` deployment protection bypass secret (server-side `x-vercel-protection-bypass` header) |
 
 **cmrt-api**
 
