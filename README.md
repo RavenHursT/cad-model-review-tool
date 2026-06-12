@@ -58,8 +58,8 @@ Two Vercel projects deploy from this monorepo:
 
 | Project | Root Directory | Production URL |
 |---------|---------------|----------------|
-| `cmrt-web` | `apps/web` | Next.js frontend |
-| `cmrt-api` | `apps/api` | NestJS API |
+| `cmrt-web` | `apps/web` | https://cmrt-web-lurchbulldog-3827s-projects.vercel.app |
+| `cmrt-api` | `apps/api` | https://cmrt-api-lurchbulldog-3827s-projects.vercel.app |
 
 Pushes to `main` trigger:
 
