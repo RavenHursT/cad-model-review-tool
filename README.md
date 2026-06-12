@@ -61,7 +61,7 @@ Two Vercel projects deploy from this monorepo:
 | `cmrt-web` | `apps/web` | https://cmrt-web-lurchbulldog-3827s-projects.vercel.app |
 | `cmrt-api` | `apps/api` | https://cmrt-api-lurchbulldog-3827s-projects.vercel.app |
 
-Pushes to `main` trigger:
+Both projects auto-deploy on push to `origin/main`. Repository: https://github.com/RavenHursT/cad-model-review-tool (public)
 
 1. **GitHub Actions** — lint, typecheck, build (and `prisma migrate deploy` once database migrations exist)
 2. **Vercel** — automatic deploy of both projects
