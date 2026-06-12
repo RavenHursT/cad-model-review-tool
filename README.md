@@ -94,7 +94,7 @@ Both projects auto-deploy on push to `origin/main`. Repository: https://github.c
 
 ## CI
 
-See [`.github/workflows/ci.yml`](.github/workflows/ci.yml):
+See [`.github/workflows/quality.yml`](.github/workflows/quality.yml) and [`.github/workflows/migrate.yml`](.github/workflows/migrate.yml):
 
 - **quality** — runs on every push and PR
-- **migrate** — runs on push to `main` when `packages/database/prisma/migrations/` exists
+- **migrate** — runs on push to `main` when `packages/database/prisma/migrations/` changes
