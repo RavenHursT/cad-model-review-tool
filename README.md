@@ -8,7 +8,7 @@ Monorepo for the CAD model review interview exercise — a 3D cube viewer with p
 apps/web          Next.js 16 + React Three Fiber (frontend)
 apps/api          NestJS 11 + tRPC (backend API)
 packages/database Prisma ORM → Supabase Postgres
-packages/trpc     Shared Zod schemas + tRPC router (Phase 4+)
+packages/trpc     Shared Zod schemas + tRPC router
 packages/ui       ShadCN components (Phase 6+)
 ```
 
