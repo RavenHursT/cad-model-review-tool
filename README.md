@@ -26,7 +26,7 @@ The frontend never talks to Supabase directly. All data flows through the NestJS
 
 ## Prerequisites
 
-- Node.js >= 20
+- Node.js >= 22
 - pnpm 11.x
 
 ## Local Development
