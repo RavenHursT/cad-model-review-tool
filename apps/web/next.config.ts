@@ -8,7 +8,7 @@ config({ path: resolve(__dirname, '../../.env.local') });
 const apiUrl = process.env.API_URL ?? 'http://localhost:3001';
 
 const nextConfig: NextConfig = {
-  transpilePackages: ['@repo/trpc'],
+  transpilePackages: ['@repo/trpc', '@repo/ui'],
   async rewrites() {
     return [
       {

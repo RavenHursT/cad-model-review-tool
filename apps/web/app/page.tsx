@@ -1,4 +1,5 @@
-import { TrpcPingBadge } from "@/components/trpc-ping-badge";
+import { SceneViewer } from '@/components/scene-viewer';
+import { TrpcPingBadge } from '@/components/trpc-ping-badge';
 
 export default function Home() {
   return (
@@ -7,38 +8,35 @@ export default function Home() {
         flex
         flex-1
         flex-col
-        items-center
-        justify-center
         bg-zinc-50
         dark:bg-black
       "
     >
-      <main
+      <header
         className="
           flex
-          flex-col
           items-center
-          gap-6
+          justify-between
+          border-b
+          border-zinc-200
           px-6
-          py-16
-          text-center
+          py-4
         "
       >
         <h1
           className="
-            text-3xl
+            text-xl
             font-semibold
-            tracking-tight
             text-black
             dark:text-zinc-50
           "
         >
           CADchat
         </h1>
-        <p className="max-w-md text-lg text-zinc-600 dark:text-zinc-400">
-          3D design review tool — API connectivity check below.
-        </p>
         <TrpcPingBadge />
+      </header>
+      <main className="relative min-h-0 flex-1">
+        <SceneViewer />
       </main>
     </div>
   );
