@@ -104,8 +104,10 @@ Both projects auto-deploy on push to `origin/main`. Repository: https://github.c
 
 | Variable | Description |
 |----------|-------------|
-| `API_URL` | URL of the `cmrt-api` deployment |
-| `API_PROTECTION_BYPASS` | `cmrt-api` deployment protection bypass secret (server-side `x-vercel-protection-bypass` header) |
+| `API_URL` | Production URL of `cmrt-api` (e.g. `https://cmrt-api.vercel.app`) |
+| `API_PROTECTION_BYPASS` | **Required when Deployment Protection is enabled on cmrt-api.** Copy the [Protection Bypass for Automation](https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection/protection-bypass-automation) secret from the `cmrt-api` project settings. The web app's `/api/trpc` route handler sends this as `x-vercel-protection-bypass` when proxying server-side. |
+
+`VERCEL_AUTOMATION_BYPASS_SECRET` is also accepted as an alias for `API_PROTECTION_BYPASS`.
 
 **cmrt-api**
 

@@ -1,5 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "installCommand": "cd ../.. && pnpm install --frozen-lockfile",
-  "buildCommand": "cd ../.. && pnpm turbo build --filter=@repo/web"
+  "buildCommand": "cd ../.. && pnpm turbo build --filter=@repo/web",
+  "relatedProjects": ["prj_Vcxypf87QvATEzjE1NDNmwzw5tWh"]
 }
