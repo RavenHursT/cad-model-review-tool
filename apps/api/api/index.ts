@@ -1,8 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import type { Application } from 'express';
-import { createApp } from '../src/bootstrap';
+import { createApp, type ExpressApp } from '../src/bootstrap';
 
-let cachedServer: Application | null = null;
+let cachedServer: ExpressApp | null = null;
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   cachedServer = cachedServer ?? (await createApp());
