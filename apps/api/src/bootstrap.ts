@@ -5,14 +5,14 @@ import { type INestApplication } from '@nestjs/common';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { createExpressMiddleware } from '@trpc/server/adapters/express';
 import { appRouter } from '@repo/trpc';
-import express, { type Express } from 'express';
+import express, { type Application } from 'express';
 import { AppModule } from './app.module';
 import { CommentService } from './comment/comment.service';
 
 config({ path: resolve(__dirname, '../../../.env') });
 config({ path: resolve(__dirname, '../../../.env.local') });
 
-export async function createApp(): Promise<Express> {
+export async function createApp(): Promise<Application> {
   const server = express();
   const appHolder: { app: INestApplication | null } = { app: null };
 
