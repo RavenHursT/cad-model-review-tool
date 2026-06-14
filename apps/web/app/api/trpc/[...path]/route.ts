@@ -7,6 +7,7 @@ function getApiBaseUrl() {
 function getProtectionBypassSecret() {
   return (
     process.env.API_PROTECTION_BYPASS ??
+    process.env.AUTOMATION_BYPASS_CMRT_API ??
     process.env.VERCEL_AUTOMATION_BYPASS_SECRET
   );
 }
