@@ -2,6 +2,8 @@
 
 Monorepo for the CAD model review interview exercise — a 3D cube viewer with persisted design review comments.
 
+**Demo:** https://cmrt-web.vercel.app/
+
 ## Architecture
 
 ```
