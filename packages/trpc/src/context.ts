@@ -1,11 +1,18 @@
-import type { Review, ReviewStatus } from './schemas/review.js';
+import type { Comment } from './schemas/comment.js';
 
-export type ReviewServiceLike = {
-  findByTargetId(targetId: string): Promise<Review | null>;
-  create(comment: string, targetId?: string): Promise<Review>;
-  updateStatus(id: string, status: ReviewStatus): Promise<Review>;
+export type CommentServiceLike = {
+  listByTargetId(targetId: string): Promise<Comment[]>;
+  create(input: {
+    comment: string;
+    anchorX: number;
+    anchorY: number;
+    anchorZ: number;
+    targetId?: string;
+  }): Promise<Comment>;
+  setApproved(id: string, approved: boolean): Promise<Comment>;
+  delete(id: string): Promise<{ id: string }>;
 };
 
 export type TrpcContext = {
-  reviewService: ReviewServiceLike;
+  commentService: CommentServiceLike;
 };

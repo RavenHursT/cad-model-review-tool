@@ -9,5 +9,9 @@ const Scene = dynamic(
 );
 
 export function SceneViewer() {
-  return <Scene />;
+  return (
+    <div className="h-full w-full">
+      <Scene />
+    </div>
+  );
 }

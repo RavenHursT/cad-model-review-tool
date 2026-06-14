@@ -7,19 +7,17 @@ datasource db {
   provider = "postgresql"
 }
 
-enum ReviewStatus {
-  pending
-  approved
-  rejected
-}
-
-model Review {
-  id        String       @id @default(cuid())
-  targetId  String       @unique @default("default-cube") @map("target_id")
+model Comment {
+  id        String   @id @default(cuid())
+  targetId  String   @default("default-cube") @map("target_id")
   comment   String
-  status    ReviewStatus @default(pending)
-  createdAt DateTime     @default(now()) @map("created_at")
-  updatedAt DateTime     @updatedAt @map("updated_at")
+  approved  Boolean?
+  anchorX   Float    @map("anchor_x")
+  anchorY   Float    @map("anchor_y")
+  anchorZ   Float    @map("anchor_z")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("reviews")
+  @@index([targetId])
+  @@map("comments")
 }

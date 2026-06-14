@@ -3,17 +3,15 @@ import type { TrpcContext } from './context.js';
 
 export { appRouter, type AppRouter };
 
-export type { ReviewServiceLike, TrpcContext } from './context.js';
+export type { CommentServiceLike, TrpcContext } from './context.js';
 export {
-  createReviewInputSchema,
+  commentSchema,
+  createCommentInputSchema,
   DEFAULT_TARGET_ID,
-  getReviewInputSchema,
-  reviewSchema,
-  reviewStatusSchema,
-  updateReviewStatusInputSchema,
-  type Review,
-  type ReviewStatus,
-} from './schemas/review.js';
+  listCommentsInputSchema,
+  updateCommentApprovalInputSchema,
+  type Comment,
+} from './schemas/comment.js';
 
 export type AppCaller = ReturnType<typeof appRouter.createCaller>;
 

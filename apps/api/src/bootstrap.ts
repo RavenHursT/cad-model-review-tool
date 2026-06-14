@@ -7,7 +7,7 @@ import { createExpressMiddleware } from '@trpc/server/adapters/express';
 import { appRouter } from '@repo/trpc';
 import express, { type Express } from 'express';
 import { AppModule } from './app.module';
-import { ReviewService } from './review/review.service';
+import { CommentService } from './comment/comment.service';
 
 config({ path: resolve(__dirname, '../../../.env') });
 config({ path: resolve(__dirname, '../../../.env.local') });
@@ -21,7 +21,7 @@ export async function createApp(): Promise<Express> {
     createExpressMiddleware({
       router: appRouter,
       createContext: () => ({
-        reviewService: appHolder.app!.get(ReviewService),
+        commentService: appHolder.app!.get(CommentService),
       }),
     }),
   );

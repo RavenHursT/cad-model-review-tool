@@ -7,5 +7,4 @@ export function createPrismaClient(connectionString: string) {
 }
 
 export { PrismaClient };
-export { ReviewStatus } from '../generated/prisma/client.js';
-export type { Review } from '../generated/prisma/client.js';
+export type { Comment } from '../generated/prisma/client.js';

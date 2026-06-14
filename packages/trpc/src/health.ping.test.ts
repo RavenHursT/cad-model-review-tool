@@ -5,12 +5,15 @@ import { createCaller } from './index.js';
 describe('health.ping', () => {
   it('returns ok and timestamp', async () => {
     const caller = createCaller({
-      reviewService: {
-        findByTargetId: async () => null,
+      commentService: {
+        listByTargetId: async () => [],
         create: async () => {
           throw new Error('not implemented');
         },
-        updateStatus: async () => {
+        setApproved: async () => {
+          throw new Error('not implemented');
+        },
+        delete: async () => {
           throw new Error('not implemented');
         },
       },
