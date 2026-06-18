@@ -5,11 +5,17 @@ import {
   createCommentInputSchema,
   DEFAULT_TARGET_ID,
   deleteCommentOutputSchema,
+  getCommentSchema,
   listCommentsInputSchema,
   updateCommentApprovalInputSchema,
 } from '../schemas/comment.js';
 
 export const commentRouter = router({
+  getById: publicProcedure
+    .input(getCommentSchema)
+    .output(commentSchema.nullable())
+    .query(({ ctx, input: {id} }) => ctx.commentService.getById(id)),
+
   list: publicProcedure
     .input(listCommentsInputSchema)
     .output(z.array(commentSchema))

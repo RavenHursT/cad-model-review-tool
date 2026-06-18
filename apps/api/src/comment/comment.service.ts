@@ -21,6 +21,12 @@ export class CommentService implements CommentServiceLike {
       .then((comments) => comments.map((comment) => this.toComment(comment)));
   }
 
+  async getById(id: string): Promise<Comment | null> {
+    return await this.prisma.db.comment.findUnique({
+      where: {id}
+    })
+  }
+
   async create(input: {
     comment: string;
     anchorX: number;

@@ -37,14 +37,10 @@ export function CommentPanel({
   const [draft, setDraft] = useState('');
   const utils = trpc.useUtils();
   const isComposer = commentId === null;
-  const { data: comments, isLoading, error } = trpc.comment.list.useQuery(
-    {},
+  
+  const { data: comment, isLoading, error } = trpc.comment.getById.useQuery(
+    {id: commentId!},
     { enabled: !isComposer },
-  );
-
-  const comment = useMemo(
-    () => comments?.find((item) => item.id === commentId) ?? null,
-    [comments, commentId],
   );
 
   const createMutation = trpc.comment.create.useMutation({

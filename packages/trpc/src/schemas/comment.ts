@@ -14,6 +14,10 @@ export const commentSchema = z.object({
   updatedAt: z.coerce.date(),
 });
 
+export const getCommentSchema = z.object({
+  id: z.string()
+})
+
 export const listCommentsInputSchema = z.object({
   targetId: z.string().optional(),
 });

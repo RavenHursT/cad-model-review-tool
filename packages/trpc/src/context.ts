@@ -1,6 +1,7 @@
 import type { Comment } from './schemas/comment.js';
 
 export type CommentServiceLike = {
+  getById(id: string): Promise<Comment | null>;
   listByTargetId(targetId: string): Promise<Comment[]>;
   create(input: {
     comment: string;
